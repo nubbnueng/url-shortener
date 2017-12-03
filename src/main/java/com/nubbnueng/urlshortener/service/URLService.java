@@ -37,4 +37,10 @@ public class URLService {
 	public List<URL> findAll() {
 		return urlRepository.findAll();
 	}
+	
+	public void increaseClickCount(String suffix) {
+		URL item = urlRepository.findByshortUrlSuffix(suffix);
+		item.setCount(item.getCount()+1);
+		urlRepository.save(item);
+	}
 }

@@ -25,7 +25,8 @@ public class URLController {
 		// find original url from db
 		final String originalUrl = urlService.getOriginalUrl(suffix);
 
-		if (originalUrl != null) {
+		if (originalUrl != null || !originalUrl.isEmpty()) {
+			urlService.increaseClickCount(suffix);
 			resp.addHeader("Location", originalUrl);
 			resp.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 		} else {
