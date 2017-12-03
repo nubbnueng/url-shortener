@@ -26,11 +26,9 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
-@SpringUI
-@Theme("valo")
-public class MainView extends UI {
+@SpringComponent
+public class MainView extends VerticalLayout implements View {
 		
-	@Autowired
 	URLRepository urlRepository;
 	
 	final static String hostUrl = "http://localhost:8080/";
@@ -41,22 +39,31 @@ public class MainView extends UI {
 	TextField urlTextField;
 	Button shortenUrlButton;
 	Link shortUrlLink;
-
-	@Override
-	protected void init(VaadinRequest request) {
-		mainLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+	
+	public MainView(URLRepository urlRepository) {
+		this.urlRepository = urlRepository;
+		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 		addHeader();
 		addForm();
 		addResult();
-		setContent(mainLayout);
-		
 	}
+
+//	@Override
+//	protected void init(VaadinRequest request) {
+//		mainLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+//		addHeader();
+//		addForm();
+//		addResult();
+////		setContent(mainLayout);
+//		
+//	}
 
 
 	private void addHeader() {
 		headerLabel = new Label("URL SHORTENER APPLICATION");
 		headerLabel.setStyleName(ValoTheme.LABEL_H1);
-		mainLayout.addComponent(headerLabel);
+//		mainLayout.addComponent(headerLabel);
+		addComponent(headerLabel);
 	}
 
 	private void addForm() {
@@ -89,14 +96,16 @@ public class MainView extends UI {
 		formLayout.addComponents(urlTextField, shortenUrlButton);
 		formLayout.setExpandRatio(urlTextField, 1);
 		formLayout.setWidth("60%");
-		mainLayout.addComponent(formLayout);
+		addComponent(formLayout);
+//		mainLayout.addComponent(formLayout);
 	}
 
 	private void addResult() {		
 		shortUrlLink = new Link("", new ExternalResource(hostUrl));
 		shortUrlLink.setVisible(false);
 		
-		mainLayout.addComponent(shortUrlLink);
+		addComponent(shortUrlLink);
+//		mainLayout.addComponent(shortUrlLink);
 	}
 
 
