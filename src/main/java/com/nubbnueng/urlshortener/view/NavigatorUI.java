@@ -2,7 +2,7 @@ package com.nubbnueng.urlshortener.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.nubbnueng.urlshortener.repository.URLRepository;
+import com.nubbnueng.urlshortener.service.URLService;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
@@ -15,7 +15,7 @@ import com.vaadin.ui.UI;
 public class NavigatorUI extends UI {
 
 	@Autowired
-	URLRepository urlRepository;
+	URLService urlService;
 	
 	Navigator navigator;
 	
@@ -27,7 +27,7 @@ public class NavigatorUI extends UI {
 		navigator = new Navigator(this, this);
 		
 		// Create and register the views
-		navigator.addView("", new MainView(urlRepository));
+		navigator.addView("", new MainView(urlService));
 	}
 
 }

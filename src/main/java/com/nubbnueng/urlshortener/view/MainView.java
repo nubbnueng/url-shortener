@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import com.google.common.hash.Hashing;
 import com.nubbnueng.urlshortener.model.URL;
 import com.nubbnueng.urlshortener.repository.URLRepository;
+import com.nubbnueng.urlshortener.service.URLService;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.server.ExternalResource;
@@ -22,8 +23,8 @@ import com.vaadin.ui.themes.ValoTheme;
 @SpringComponent
 public class MainView extends VerticalLayout implements View {
 		
-	// URLRepository can't @Autowired here.
-	URLRepository urlRepository; 
+	// URLService can't @Autowired here.
+	URLService urlService; 
 	
 	final static String hostUrl = "http://localhost:8080/";
 	
@@ -34,8 +35,8 @@ public class MainView extends VerticalLayout implements View {
 	Button shortenUrlButton;
 	Link shortUrlLink;
 	
-	public MainView(URLRepository urlRepository) {
-		this.urlRepository = urlRepository;	
+	public MainView(URLService urlService) {
+		this.urlService = urlService;	
 		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 		addHeader();
 		addForm();
@@ -79,7 +80,7 @@ public class MainView extends VerticalLayout implements View {
 			shortUrlLink.setVisible(true);
 			
 			try {
-				urlRepository.save(new URL(shortUrlSuffix, originalUrl));
+				urlService.saveUrl(new URL(shortUrlSuffix, originalUrl));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
