@@ -2,34 +2,28 @@ package com.nubbnueng.urlshortener.view;
 
 import java.nio.charset.StandardCharsets;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.hash.Hashing;
 import com.nubbnueng.urlshortener.model.URL;
 import com.nubbnueng.urlshortener.repository.URLRepository;
-import com.vaadin.annotations.Theme;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
-import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringComponent;
-import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
 @SpringComponent
 public class MainView extends VerticalLayout implements View {
 		
-	URLRepository urlRepository;
+	// URLRepository can't @Autowired here.
+	URLRepository urlRepository; 
 	
 	final static String hostUrl = "http://localhost:8080/";
 	
@@ -41,7 +35,7 @@ public class MainView extends VerticalLayout implements View {
 	Link shortUrlLink;
 	
 	public MainView(URLRepository urlRepository) {
-		this.urlRepository = urlRepository;
+		this.urlRepository = urlRepository;	
 		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 		addHeader();
 		addForm();
