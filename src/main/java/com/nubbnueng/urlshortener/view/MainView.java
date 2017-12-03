@@ -75,6 +75,7 @@ public class MainView extends UI {
 			urlTextField.clear();
 			shortUrlLink.setCaption(shortUrl);
 			shortUrlLink.setResource(new ExternalResource(shortUrl));
+			shortUrlLink.setVisible(true);
 			
 			try {
 				urlRepository.save(new URL(shortUrlSuffix, originalUrl));
@@ -92,8 +93,9 @@ public class MainView extends UI {
 	}
 
 	private void addResult() {		
-		shortUrlLink = new Link(hostUrl, new ExternalResource(hostUrl));
-
+		shortUrlLink = new Link("", new ExternalResource(hostUrl));
+		shortUrlLink.setVisible(false);
+		
 		mainLayout.addComponent(shortUrlLink);
 	}
 
