@@ -6,8 +6,9 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
 
-@SpringUI
-@Theme("valo")
+//@SpringUI
+//@Theme("valo")
+
 public class NavigatorUI extends UI {
 
 	Navigator navigator;
@@ -20,7 +21,7 @@ public class NavigatorUI extends UI {
 		navigator = new Navigator(this, this);
 		
 		// Create and register the views
-		navigator.addView("", new MainView());
+		//navigator.addView("", new MainView());
 	}
 
 }
