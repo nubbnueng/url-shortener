@@ -27,7 +27,6 @@ public class URL {
 	public URL( String shortUrlSuffix, String originalUrl) {
 		this.shortUrlSuffix = shortUrlSuffix;
 		this.originalUrl = originalUrl;
-		this.count = 0;
 	}
 
 	public long getId() {
@@ -61,9 +60,4 @@ public class URL {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
-	public void increaseCount() {
-		this.count++;
-	}
-
 }
