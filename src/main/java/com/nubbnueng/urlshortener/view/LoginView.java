@@ -1,6 +1,9 @@
 package com.nubbnueng.urlshortener.view;
 
+import com.nubbnueng.urlshortener.service.UserService;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
+import com.vaadin.server.Page;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
@@ -11,7 +14,11 @@ import com.vaadin.ui.themes.ValoTheme;
 
 public class LoginView extends VerticalLayout implements View {
 	
-	public LoginView() {
+	UserService userService;
+	
+	public LoginView(UserService userService) {
+		this.userService = userService;
+		
 		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 		setSpacing(true);
 		addHeader();
@@ -30,13 +37,28 @@ public class LoginView extends VerticalLayout implements View {
 		loginFormLayout.setWidth("30%");
 		loginFormLayout.setStyleName(ValoTheme.FORMLAYOUT_LIGHT);
 		
+		Label errorTextField = new Label("Login failed, Please try again.");
+		errorTextField.setVisible(false);
+		errorTextField.setStyleName(ValoTheme.LABEL_FAILURE);
+		
 		TextField usernameTextField = new TextField("Username");
 		usernameTextField.setWidth("100%");
+		
 		PasswordField passwordField = new PasswordField("Password");
 		passwordField.setWidth("100%");
-		Button loginButton = new Button("Login");
 		
-		loginFormLayout.addComponents(usernameTextField, passwordField, loginButton);
+		Button loginButton = new Button("Login");		
+		loginButton.addClickListener(click -> {
+			if(userService.doAuthenticate(usernameTextField.getValue(), passwordField.getValue())) {
+				errorTextField.setVisible(false);
+				getUI().getCurrent().getNavigator().navigateTo("statistics");
+			} else {
+				errorTextField.setVisible(true);
+			}
+			
+		});
+		
+		loginFormLayout.addComponents(errorTextField, usernameTextField, passwordField, loginButton);
 		addComponent(loginFormLayout);		
 	}
 	
