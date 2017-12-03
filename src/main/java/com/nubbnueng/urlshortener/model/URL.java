@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class URL {
@@ -14,6 +15,7 @@ public class URL {
 	
 	private String shortUrlSuffix;
 	
+	@Lob
 	private String originalUrl;
 	
 	private int count;
