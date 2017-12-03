@@ -1,9 +1,8 @@
 package com.nubbnueng.urlshortener.view;
 
 import com.nubbnueng.urlshortener.service.UserService;
-import com.vaadin.navigator.Navigator;
+import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
-import com.vaadin.server.Page;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
@@ -35,7 +34,7 @@ public class LoginView extends VerticalLayout implements View {
 		VerticalLayout loginFormLayout = new VerticalLayout();
 		loginFormLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 		loginFormLayout.setWidth("30%");
-		loginFormLayout.setStyleName(ValoTheme.FORMLAYOUT_LIGHT);
+		loginFormLayout.setStyleName(ValoTheme.LAYOUT_CARD);
 		
 		Label errorTextField = new Label("Login failed, Please try again.");
 		errorTextField.setVisible(false);
@@ -47,7 +46,8 @@ public class LoginView extends VerticalLayout implements View {
 		PasswordField passwordField = new PasswordField("Password");
 		passwordField.setWidth("100%");
 		
-		Button loginButton = new Button("Login");		
+		Button loginButton = new Button("Login");
+		loginButton.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 		loginButton.addClickListener(click -> {
 			if(userService.doAuthenticate(usernameTextField.getValue(), passwordField.getValue())) {
 				errorTextField.setVisible(false);
