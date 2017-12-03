@@ -28,6 +28,7 @@ public class NavigatorUI extends UI {
 		
 		// Create and register the views
 		navigator.addView("", new MainView(urlService));
+		navigator.addView("statistics", new StatisticsView(urlService));
 	}
 
 }
