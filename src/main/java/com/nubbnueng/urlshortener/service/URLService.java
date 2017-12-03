@@ -12,16 +12,28 @@ import com.nubbnueng.urlshortener.repository.URLRepository;
 public class URLService {
 	@Autowired
 	private URLRepository urlRepository;
-	
+
 	public String getOriginalUrl(String suffix) {
-		URL item = urlRepository.findByshortUrlSuffix(suffix);
-		return item.getOriginalUrl();
+		try {
+			URL item = urlRepository.findByshortUrlSuffix(suffix);
+			return item.getOriginalUrl();
+		} catch (NullPointerException e) {
+			return "";
+		}
+
 	}
-	
-	public void saveUrl(URL url) {
-		urlRepository.save(url);
+
+	public void saveUrl(String shortUrlSuffix, String originalUrl) {
+		try {
+			// check is duplicate url?
+			if(getOriginalUrl(shortUrlSuffix) == null || getOriginalUrl(shortUrlSuffix).isEmpty()) {
+				urlRepository.save(new URL(shortUrlSuffix, originalUrl));
+			}				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public List<URL> findAll() {
 		return urlRepository.findAll();
 	}

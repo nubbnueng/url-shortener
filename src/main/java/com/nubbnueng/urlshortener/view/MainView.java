@@ -79,7 +79,7 @@ public class MainView extends VerticalLayout implements View {
 			shortUrlLink.setResource(new ExternalResource(shortUrl));
 			shortUrlLink.setVisible(true);
 			
-			saveNewUrl(shortUrlSuffix, originalUrl);
+			urlService.saveUrl(shortUrlSuffix, originalUrl);
 		});
 
 		HorizontalLayout formLayout = new HorizontalLayout();
@@ -98,16 +98,6 @@ public class MainView extends VerticalLayout implements View {
 //		mainLayout.addComponent(shortUrlLink);
 	}
 	
-	public void saveNewUrl(String shortUrlSuffix, String originalUrl) {
-		try {
-			// check is duplicate url?
-			if(urlService.getOriginalUrl(shortUrlSuffix) == null || urlService.getOriginalUrl(shortUrlSuffix).isEmpty()) {
-				urlService.saveUrl(new URL(shortUrlSuffix, originalUrl));
-			}				
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 
 }
