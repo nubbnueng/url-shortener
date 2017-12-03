@@ -4,8 +4,6 @@ import java.nio.charset.StandardCharsets;
 
 
 import com.google.common.hash.Hashing;
-import com.nubbnueng.urlshortener.model.URL;
-import com.nubbnueng.urlshortener.repository.URLRepository;
 import com.nubbnueng.urlshortener.service.URLService;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
@@ -43,21 +41,9 @@ public class MainView extends VerticalLayout implements View {
 		addResult();
 	}
 
-//	@Override
-//	protected void init(VaadinRequest request) {
-//		mainLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-//		addHeader();
-//		addForm();
-//		addResult();
-////		setContent(mainLayout);
-//		
-//	}
-
-
 	private void addHeader() {
 		headerLabel = new Label("URL SHORTENER APPLICATION");
 		headerLabel.setStyleName(ValoTheme.LABEL_H1);
-//		mainLayout.addComponent(headerLabel);
 		addComponent(headerLabel);
 	}
 
@@ -87,7 +73,6 @@ public class MainView extends VerticalLayout implements View {
 		formLayout.setExpandRatio(urlTextField, 1);
 		formLayout.setWidth("60%");
 		addComponent(formLayout);
-//		mainLayout.addComponent(formLayout);
 	}
 
 	private void addResult() {		
@@ -95,7 +80,6 @@ public class MainView extends VerticalLayout implements View {
 		shortUrlLink.setVisible(false);
 		
 		addComponent(shortUrlLink);
-//		mainLayout.addComponent(shortUrlLink);
 	}
 	
 
