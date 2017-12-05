@@ -30,9 +30,9 @@ public class NavigatorUI extends UI {
 		navigator = new Navigator(this, this);
 		
 		// Create and register the views
-		navigator.addView("", new TemplateView(new MainView(urlService)));
-		navigator.addView("statistics", new TemplateView(new StatisticsView(urlService)));
-		navigator.addView("login", new TemplateView(new LoginView(userService)));
+		navigator.addView("", new TemplateView(new MainView(urlService), navigator));
+		navigator.addView("statistics", new TemplateView(new StatisticsView(urlService), navigator));
+		navigator.addView("login", new TemplateView(new LoginView(userService), navigator));
 	}
 
 }
