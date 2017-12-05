@@ -25,8 +25,6 @@ public class MainView extends VerticalLayout implements View {
 	// URLService can't @Autowired here.
 	private URLService urlService; 
 	
-	private final static String hostUrl = "http://localhost:8080/";
-	
 	private VerticalLayout mainLayout = new VerticalLayout();
 	
 	private Label headerLabel;
@@ -64,15 +62,14 @@ public class MainView extends VerticalLayout implements View {
 		shortenUrlButton.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 		shortenUrlButton.addClickListener(click -> {
 			String originalUrl = urlTextField.getValue();
-			String shortUrlSuffix = Hashing.murmur3_32().hashString(originalUrl, StandardCharsets.UTF_8).toString();
-			String shortUrl = hostUrl + shortUrlSuffix;
-			
+			String shortUrl = urlService.makeShortUrl(originalUrl);
+
 			urlTextField.clear();
 			shortUrlLink.setCaption(shortUrl);
 			shortUrlLink.setResource(new ExternalResource(shortUrl));
 			shortUrlLink.setVisible(true);
 			
-			urlService.saveUrl(shortUrlSuffix, originalUrl);
+			urlService.saveUrl(shortUrl, originalUrl);
 		});
 
 		HorizontalLayout formLayout = new HorizontalLayout();
@@ -83,12 +80,9 @@ public class MainView extends VerticalLayout implements View {
 	}
 
 	private void addResult() {		
-		shortUrlLink = new Link("", new ExternalResource(hostUrl));
+		shortUrlLink = new Link("", new ExternalResource(urlService.getHostUrl()));
 		shortUrlLink.setVisible(false);
 		
 		addComponent(shortUrlLink);
 	}
-	
-
-
 }
