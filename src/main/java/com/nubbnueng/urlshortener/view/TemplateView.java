@@ -22,6 +22,7 @@ public class TemplateView extends VerticalLayout implements View {
 	
 	protected Button loginNav;
 	protected Button logoutNav;
+	protected Button statisticNav;
 
 	public TemplateView(View contentLayout, Navigator navigator, UserService userService) {
 		this.contentLayout = contentLayout;
@@ -44,6 +45,7 @@ public class TemplateView extends VerticalLayout implements View {
 	private void refreshNavbar() {
 		loginNav.setVisible(!userService.isLogin());
 		logoutNav.setVisible(userService.isLogin());
+		statisticNav.setVisible(userService.isLogin());
 	}
 
 	private void addNavigatorBar() {
@@ -58,6 +60,11 @@ public class TemplateView extends VerticalLayout implements View {
 		Button homeNav = new Button("Home");
 		homeNav.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
 		homeNav.addClickListener(click -> navigator.navigateTo(""));
+		
+		statisticNav = new Button("Statitics");
+		statisticNav.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
+		statisticNav.setVisible(userService.isLogin());
+		statisticNav.addClickListener(click -> navigator.navigateTo("statistic"));
 
 		loginNav = new Button("Login");
 		loginNav.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
@@ -72,7 +79,7 @@ public class TemplateView extends VerticalLayout implements View {
 			navigator.navigateTo("");
 		});
 
-		navbar.addComponents(homeNav, loginNav, logoutNav);
+		navbar.addComponents(homeNav, statisticNav, loginNav, logoutNav);
 		navbarLayout.addComponent(navbar);
 
 		addComponent(navbarLayout);
