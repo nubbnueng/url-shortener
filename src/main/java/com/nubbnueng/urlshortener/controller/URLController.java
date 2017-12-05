@@ -15,7 +15,7 @@ import com.nubbnueng.urlshortener.service.URLService;
 public class URLController {
 
 	@Autowired
-	URLService urlService;
+	private URLService urlService;
 	private String originalUrl;
 
 	@RequestMapping(value = "/shorturl/{suffix}", method = RequestMethod.GET)
