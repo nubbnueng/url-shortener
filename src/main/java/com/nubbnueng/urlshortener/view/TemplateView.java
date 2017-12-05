@@ -17,19 +17,17 @@ import com.vaadin.ui.themes.ValoTheme;
 public class TemplateView extends VerticalLayout implements View {
 
 	protected UserService userService;
-	protected VerticalLayout contentLayout;
+	protected View contentLayout;
 	protected Navigator navigator;
 	
 	protected Button loginNav;
 	protected Button logoutNav;
 
-	public TemplateView(VerticalLayout contentLayout, Navigator navigator, UserService userService) {
+	public TemplateView(View contentLayout, Navigator navigator, UserService userService) {
 		this.contentLayout = contentLayout;
 		this.navigator = navigator;
 		this.userService = userService;
 
-		setSpacing(true);
-		setWidth("100%");
 		setMargin(false);
 		setDefaultComponentAlignment(Alignment.TOP_CENTER);
 
@@ -40,6 +38,7 @@ public class TemplateView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeEvent event) {
         refreshNavbar();
+        contentLayout.enter(event);
     }
 
 	private void refreshNavbar() {
@@ -80,6 +79,6 @@ public class TemplateView extends VerticalLayout implements View {
 	}
 
 	private void addContent() {
-		addComponent(contentLayout);
+		addComponent((VerticalLayout)contentLayout);
 	}
 }

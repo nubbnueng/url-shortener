@@ -3,6 +3,7 @@ package com.nubbnueng.urlshortener.view;
 import com.nubbnueng.urlshortener.service.UserService;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
@@ -15,6 +16,10 @@ public class LoginView extends VerticalLayout implements View {
 	
 	private UserService userService;
 	
+	private TextField usernameTextField;
+	private PasswordField passwordField;
+	private Label errorTextField;
+	
 	public LoginView(UserService userService) {
 		this.userService = userService;
 		
@@ -22,6 +27,13 @@ public class LoginView extends VerticalLayout implements View {
 		setSpacing(true);
 		addHeader();
 		addLoginForm();
+	}
+	
+	@Override
+	public void enter(ViewChangeEvent event) {
+		usernameTextField.clear();
+		passwordField.clear();
+		errorTextField.setVisible(false);
 	}
 	
 	private void addHeader() {
@@ -36,14 +48,14 @@ public class LoginView extends VerticalLayout implements View {
 		loginFormLayout.setWidth("30%");
 		loginFormLayout.setStyleName(ValoTheme.LAYOUT_CARD);
 		
-		Label errorTextField = new Label("Login failed, Please try again.");
+		errorTextField = new Label("Login failed, Please try again.");
 		errorTextField.setVisible(false);
 		errorTextField.setStyleName(ValoTheme.LABEL_FAILURE);
 		
-		TextField usernameTextField = new TextField("Username");
+		usernameTextField = new TextField("Username");
 		usernameTextField.setWidth("100%");
 		
-		PasswordField passwordField = new PasswordField("Password");
+		passwordField = new PasswordField("Password");
 		passwordField.setWidth("100%");
 		
 		Button loginButton = new Button("Login");
@@ -61,6 +73,4 @@ public class LoginView extends VerticalLayout implements View {
 		loginFormLayout.addComponents(errorTextField, usernameTextField, passwordField, loginButton);
 		addComponent(loginFormLayout);		
 	}
-	
-	
 }

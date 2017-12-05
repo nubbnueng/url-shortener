@@ -7,6 +7,7 @@ import com.google.common.hash.Hashing;
 import com.nubbnueng.urlshortener.service.URLService;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.ui.Alignment;
@@ -39,6 +40,12 @@ public class MainView extends VerticalLayout implements View {
 		addHeader();
 		addForm();
 		addResult();
+	}
+	
+	@Override
+	public void enter(ViewChangeEvent event) {
+		urlTextField.clear();
+		shortUrlLink.setVisible(false);
 	}
 
 	private void addHeader() {
