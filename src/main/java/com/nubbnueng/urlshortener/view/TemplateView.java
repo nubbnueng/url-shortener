@@ -26,12 +26,19 @@ public class TemplateView extends VerticalLayout implements View{
 		HorizontalLayout navbarLayout = new HorizontalLayout();
 		navbarLayout.setStyleName(ValoTheme.LAYOUT_CARD);
 		navbarLayout.setWidth("100%");
-		navbarLayout.setMargin(false);
-		navbarLayout.setSpacing(false);
+		
+		HorizontalLayout navbar = new HorizontalLayout();
+		navbar.setMargin(false);
+		navbar.setSpacing(false);
+		
+		Button homeNav = new Button("Home");
+		homeNav.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
 		
 		Button loginNav = new Button("Login");
+		loginNav.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
 		
-		navbarLayout.addComponent(loginNav);
+		navbar.addComponents(homeNav,loginNav);
+		navbarLayout.addComponent(navbar);
 		
 		addComponent(navbarLayout);
 	}
