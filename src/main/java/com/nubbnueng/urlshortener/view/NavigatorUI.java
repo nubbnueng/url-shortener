@@ -30,9 +30,9 @@ public class NavigatorUI extends UI {
 		// Create a navigator to control the views
 		navigator = new Navigator(this, this);
 		
-		TemplateView homeView = new TemplateView(new MainView(urlService), navigator, userService);
-		TemplateView statisticView = new TemplateView(new StatisticsView(urlService, userService), navigator, userService);
-		TemplateView loginView = new TemplateView(new LoginView(userService), navigator, userService);
+		TemplateView homeView = new TemplateView(new MainView(urlService), userService);
+		TemplateView statisticView = new TemplateView(new StatisticsView(urlService, userService), userService);
+		TemplateView loginView = new TemplateView(new LoginView(userService), userService);
 		
 		// Create and register the views
 		navigator.addView("", homeView);

@@ -14,15 +14,13 @@ public class TemplateView extends VerticalLayout implements View {
 
 	protected UserService userService;
 	protected View contentLayout;
-	protected Navigator navigator;
 	
 	protected Button loginNav;
 	protected Button logoutNav;
 	protected Button statisticNav;
 
-	public TemplateView(View contentLayout, Navigator navigator, UserService userService) {
+	public TemplateView(View contentLayout, UserService userService) {
 		this.contentLayout = contentLayout;
-		this.navigator = navigator;
 		this.userService = userService;
 
 		setMargin(false);
@@ -55,24 +53,24 @@ public class TemplateView extends VerticalLayout implements View {
 
 		Button homeNav = new Button("Home");
 		homeNav.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
-		homeNav.addClickListener(click -> navigator.navigateTo(""));
+		homeNav.addClickListener(click -> getUI().getCurrent().getNavigator().navigateTo(""));
 		
 		statisticNav = new Button("Statitics");
 		statisticNav.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
 		statisticNav.setVisible(userService.isLogin());
-		statisticNav.addClickListener(click -> navigator.navigateTo("statistics"));
+		statisticNav.addClickListener(click -> getUI().getCurrent().getNavigator().navigateTo("statistics"));
 
 		loginNav = new Button("Login");
 		loginNav.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
 		loginNav.setVisible(!userService.isLogin());
-		loginNav.addClickListener(click -> navigator.navigateTo("login"));
+		loginNav.addClickListener(click -> getUI().getCurrent().getNavigator().navigateTo("login"));
 
 		logoutNav = new Button("Logout");
 		logoutNav.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
 		logoutNav.setVisible(userService.isLogin());
 		logoutNav.addClickListener(click -> {
 			userService.logout();
-			navigator.navigateTo("");
+			getUI().getCurrent().getNavigator().navigateTo("");
 		});
 
 		navbar.addComponents(homeNav, statisticNav, loginNav, logoutNav);
