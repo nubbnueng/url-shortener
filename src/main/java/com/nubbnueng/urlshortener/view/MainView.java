@@ -1,9 +1,5 @@
 package com.nubbnueng.urlshortener.view;
 
-import java.nio.charset.StandardCharsets;
-
-
-import com.google.common.hash.Hashing;
 import com.nubbnueng.urlshortener.service.URLService;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
@@ -24,8 +20,6 @@ public class MainView extends VerticalLayout implements View {
 		
 	// URLService can't @Autowired here.
 	private URLService urlService; 
-	
-	private VerticalLayout mainLayout = new VerticalLayout();
 	
 	private Label headerLabel;
 	private TextField urlTextField;

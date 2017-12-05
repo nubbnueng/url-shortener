@@ -1,7 +1,5 @@
 package com.nubbnueng.urlshortener.view;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.nubbnueng.urlshortener.service.UserService;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
@@ -9,8 +7,6 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
