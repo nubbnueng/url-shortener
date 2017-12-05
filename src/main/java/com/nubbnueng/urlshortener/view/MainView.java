@@ -58,7 +58,7 @@ public class MainView extends VerticalLayout implements View {
 		shortenUrlButton.addClickListener(click -> {
 			String originalUrl = urlTextField.getValue();
 			String shortUrlSuffix = Hashing.murmur3_32().hashString(originalUrl, StandardCharsets.UTF_8).toString();
-			String shortUrl = hostUrl + "shorturl/" + shortUrlSuffix;
+			String shortUrl = hostUrl + shortUrlSuffix;
 			
 			urlTextField.clear();
 			shortUrlLink.setCaption(shortUrl);

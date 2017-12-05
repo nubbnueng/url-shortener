@@ -18,7 +18,7 @@ public class URLController {
 	private URLService urlService;
 	private String originalUrl;
 
-	@RequestMapping(value = "/shorturl/{suffix}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{suffix}", method = RequestMethod.GET)
 	public void redirectToUrl(@PathVariable String suffix, HttpServletResponse resp) throws Exception {
 		originalUrl = urlService.getOriginalUrl(suffix);
 
