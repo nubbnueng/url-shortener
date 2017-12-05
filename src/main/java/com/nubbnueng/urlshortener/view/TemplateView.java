@@ -64,7 +64,7 @@ public class TemplateView extends VerticalLayout implements View {
 		statisticNav = new Button("Statitics");
 		statisticNav.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
 		statisticNav.setVisible(userService.isLogin());
-		statisticNav.addClickListener(click -> navigator.navigateTo("statistic"));
+		statisticNav.addClickListener(click -> navigator.navigateTo("statistics"));
 
 		loginNav = new Button("Login");
 		loginNav.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
