@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-	final String username = "admin";
-	final String password = "p@ssw0rd";
+	private final String username = "admin";
+	private final String password = "p@ssw0rd";
 	
 	public UserService() {
 		// TODO Auto-generated constructor stub

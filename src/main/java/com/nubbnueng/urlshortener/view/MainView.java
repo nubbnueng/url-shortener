@@ -22,16 +22,16 @@ import com.vaadin.ui.themes.ValoTheme;
 public class MainView extends VerticalLayout implements View {
 		
 	// URLService can't @Autowired here.
-	URLService urlService; 
+	private URLService urlService; 
 	
-	final static String hostUrl = "http://localhost:8080/";
+	private final static String hostUrl = "http://localhost:8080/";
 	
-	VerticalLayout mainLayout = new VerticalLayout();
+	private VerticalLayout mainLayout = new VerticalLayout();
 	
-	Label headerLabel;
-	TextField urlTextField;
-	Button shortenUrlButton;
-	Link shortUrlLink;
+	private Label headerLabel;
+	private TextField urlTextField;
+	private Button shortenUrlButton;
+	private Link shortUrlLink;
 	
 	public MainView(URLService urlService) {
 		this.urlService = urlService;	

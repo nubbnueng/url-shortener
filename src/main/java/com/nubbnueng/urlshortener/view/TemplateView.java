@@ -11,8 +11,8 @@ import com.vaadin.ui.themes.ValoTheme;
 
 public class TemplateView extends VerticalLayout implements View{
 	
-	VerticalLayout contentLayout;
-	Navigator navigator;
+	private VerticalLayout contentLayout;
+	private Navigator navigator;
 	
 	public TemplateView(VerticalLayout contentLayout, Navigator navigator) {
 		this.contentLayout = contentLayout;

@@ -13,7 +13,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 public class StatisticsView extends VerticalLayout implements View {
 	
-	URLService urlService;
+	private URLService urlService;
 	
 	public StatisticsView(URLService urlService) {
 		this.urlService = urlService;

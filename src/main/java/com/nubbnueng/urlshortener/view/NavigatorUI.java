@@ -16,11 +16,12 @@ import com.vaadin.ui.UI;
 public class NavigatorUI extends UI {
 
 	@Autowired
-	URLService urlService;
-	@Autowired
-	UserService userService;
+	private URLService urlService;
 	
-	Navigator navigator;
+	@Autowired
+	private UserService userService;
+	
+	private Navigator navigator;
 	
 	@Override
 	protected void init(VaadinRequest request) {

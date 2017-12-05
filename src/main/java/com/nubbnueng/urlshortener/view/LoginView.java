@@ -13,7 +13,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 public class LoginView extends VerticalLayout implements View {
 	
-	UserService userService;
+	private UserService userService;
 	
 	public LoginView(UserService userService) {
 		this.userService = userService;
